@@ -44,12 +44,14 @@ public class CustomerRegistrationController {
     public String Registration(Customer customer){
         customerService.saveCustomerWithRole(customer);
 
-        return "registration";
+        return "login";
 
     }
 
     @RequestMapping("/customer_home")
-    public String showCustomer(@AuthenticationPrincipal CustomerDetail customer, Account account, Model model) {
+    public String showCustomer(Principal principal, Model model) {
+        Customer customer = customerRepository.findByKra(principal.getName());
+        Account account = customer.getAccount();
         model.addAttribute("account",account);
         model.addAttribute("customer", customer);
 
@@ -64,6 +66,7 @@ public class CustomerRegistrationController {
         Customer customer = customerRepository.findByKra(principal.getName());
         Account account = customer.getAccount();
 
+        model.addAttribute("customer", customer);
         model.addAttribute("account", account);
         model.addAttribute("transactionList", transactionList);
 

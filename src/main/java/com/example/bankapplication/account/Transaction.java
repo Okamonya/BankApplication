@@ -19,6 +19,18 @@ public class Transaction {
     @JoinColumn( name = "account_id")
     private Account account;
 
+    @ManyToOne(cascade = {CascadeType.ALL, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE, CascadeType.REFRESH, CascadeType.DETACH})
+    @JoinColumn(name = "account_id_id")
+    private Account account_id;
+
+    public Account getAccount_id() {
+        return account_id;
+    }
+
+    public void setAccount_id(Account account_id) {
+        this.account_id = account_id;
+    }
+
     public Transaction(){
 
     }

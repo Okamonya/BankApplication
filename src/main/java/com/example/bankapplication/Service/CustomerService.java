@@ -32,7 +32,6 @@ public class CustomerService {
 
 
         customerRepository.save(customer);
-        roleRepository.save(roleCustomer);
     }
 
 }
